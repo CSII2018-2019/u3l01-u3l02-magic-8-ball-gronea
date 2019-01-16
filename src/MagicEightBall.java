@@ -3,6 +3,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 public class MagicEightBall extends JFrame{
+	
+	private String message = "Welcome";
+	
+	private JLabel text = new JLabel (message); //"Welcome" will become a variable to change
 	
 	public MagicEightBall () {
 		//setup what goes into the window
@@ -60,7 +67,6 @@ public class MagicEightBall extends JFrame{
 		centerPanel.setPreferredSize(size);
 		centerPanelBackground.add(centerPanel);
 		
-		JLabel text = new JLabel ("Welcome"); //"Text" will become a variable to change
 		Font textFont = new Font (Font.SANS_SERIF, Font.BOLD + Font.ITALIC, 16);
 		text.setFont(textFont);
 		text.setForeground(Color.BLUE);
@@ -75,10 +81,31 @@ public class MagicEightBall extends JFrame{
 		//Buttons
 		JButton shakeButton = new JButton("Shake"); //Add code to make it change text
 		shakeButton.setBackground(Color.WHITE);
+		shakeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				shakeBall();
+			}
+		});
 		buttonPanel.add(shakeButton);
 
 	}
 
+	private void shakeBall() {
+		//Changes text
+		String [] responseList = new String [5];
+		responseList[0] = "yes";
+		responseList[1] = "maybe";
+		responseList[2] = "as you wish";
+		responseList[3] = "nope";
+		responseList[4] = "try again";
+		responseList[5] = "I don't know. Do I look like a magic eight ball?";
+		int randomNum = (int) (Math.random()* 5);
+		message = responseList[randomNum];
+		System.out.println(message);
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		try {
             //UI = user interface
