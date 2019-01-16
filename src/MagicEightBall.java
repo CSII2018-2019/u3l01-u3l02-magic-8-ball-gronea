@@ -15,9 +15,11 @@ import javax.swing.UIManager;
 
 public class MagicEightBall extends JFrame{
 	
-	private String message = "Welcome";
+	private String message = null;
 	
 	private JLabel text = new JLabel (message); //"Welcome" will become a variable to change
+	
+	JPanel centerPanel = new JPanel ();
 	
 	public MagicEightBall () {
 		//setup what goes into the window
@@ -62,11 +64,12 @@ public class MagicEightBall extends JFrame{
 		
 		Dimension size = new Dimension(400,200);
 		
-		JPanel centerPanel = new JPanel ();
 		centerPanel.setBackground(Color.WHITE); //This will change with buttons
 		centerPanel.setPreferredSize(size);
 		centerPanelBackground.add(centerPanel);
 		
+		message = "Welcome";
+		text = new JLabel ("Welcome!");
 		Font textFont = new Font (Font.SANS_SERIF, Font.BOLD + Font.ITALIC, 16);
 		text.setFont(textFont);
 		text.setForeground(Color.BLUE);
@@ -98,12 +101,17 @@ public class MagicEightBall extends JFrame{
 		responseList[2] = "as you wish";
 		responseList[3] = "nope";
 		responseList[4] = "try again";
-		responseList[5] = "I don't know. Do I look like a magic eight ball?";
 		int randomNum = (int) (Math.random()* 5);
 		message = responseList[randomNum];
 		System.out.println(message);
 		
+		updateText();
 		
+	}
+	
+	private void updateText() {
+		text =  new JLabel (message);
+		centerPanel.add(text);
 	}
 	
 	public static void main(String[] args) {
