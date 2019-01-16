@@ -17,8 +17,9 @@ public class MagicEightBall extends JFrame{
 	
 	private String message = null;
 	
-	private JLabel text = new JLabel (message); //"Welcome" will become a variable to change
+	private JLabel text = new JLabel (); //"Welcome" will become a variable to change
 	
+	JPanel centerPanelBackground = new JPanel ();
 	JPanel centerPanel = new JPanel ();
 	
 	public MagicEightBall () {
@@ -57,7 +58,6 @@ public class MagicEightBall extends JFrame{
 		titleLabel.setHorizontalAlignment(JLabel.CENTER); //left or right
 		
 		//CENTER PANEL
-		JPanel centerPanelBackground = new JPanel ();
 		centerPanelBackground.setBackground(Color.BLACK);
 		//add random array for shake
 		add(centerPanelBackground, BorderLayout.CENTER);
@@ -68,8 +68,7 @@ public class MagicEightBall extends JFrame{
 		centerPanel.setPreferredSize(size);
 		centerPanelBackground.add(centerPanel);
 		
-		message = "Welcome";
-		text = new JLabel ("Welcome!");
+		text.setText("Welcome");
 		Font textFont = new Font (Font.SANS_SERIF, Font.BOLD + Font.ITALIC, 16);
 		text.setFont(textFont);
 		text.setForeground(Color.BLUE);
@@ -110,8 +109,11 @@ public class MagicEightBall extends JFrame{
 	}
 	
 	private void updateText() {
-		text =  new JLabel (message);
+		text.setText(message);;
+		
 		centerPanel.add(text);
+		
+		
 	}
 	
 	public static void main(String[] args) {
